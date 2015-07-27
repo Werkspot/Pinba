@@ -1,16 +1,15 @@
 <?php
-namespace Werkspot\Pinba;
+namespace Werkspot\Pinba\PDO;
 
 /*
  * This is native Doctrine\DBAL\Driver\PDOConnection, the only difference is that
  * i's extended from PDOPinba instead of regular PDO
  */
-use PDOPinba\PDO;
 use Doctrine\DBAL\Driver\Connection;
 use Doctrine\DBAL\Driver\ServerInfoAwareConnection;
 use PDOException;
 
-class PinbaPDOConnection extends PDO implements Connection, ServerInfoAwareConnection
+class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
 {
     /**
      * @param string      $dsn

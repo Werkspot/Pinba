@@ -1,5 +1,5 @@
 <?php
-namespace Werkspot\Pinba;
+namespace Werkspot\Pinba\Guzzle;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Event\EmitterInterface;
@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Message\RequestInterface;
 use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Url;
+use Werkspot\Pinba\PinbaTimer;
 
 class TimedGuzzleClient implements ClientInterface
 {

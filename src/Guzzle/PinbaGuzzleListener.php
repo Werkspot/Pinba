@@ -1,5 +1,5 @@
 <?php
-namespace Werkspot\Library;
+namespace Werkspot\Pinba\Guzzle;
 
 use GuzzleHttp\Event\BeforeEvent;
 use GuzzleHttp\Event\CompleteEvent;

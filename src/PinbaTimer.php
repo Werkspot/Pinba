@@ -9,10 +9,10 @@ class PinbaTimer
     /**
      * @param array $tags
      */
-    private function __construct(array $tags)
+    private function __construct(array $tags, array $data = [])
     {
         if (self::isPinbaInstalled()) {
-            $this->timer = pinba_timer_start($tags);
+            $this->timer = pinba_timer_start($tags, $data);
         }
     }
 
@@ -44,9 +44,9 @@ class PinbaTimer
      * @param array $tags like ['group' => 'symfony', 'operation' => 'initialize']
      * @return PinbaTimer
      */
-    public static function start(array $tags)
+    public static function start(array $tags, array $data = [])
     {
-        return new self($tags);
+        return new self($tags, $data);
     }
 
     /**
