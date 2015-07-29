@@ -157,8 +157,8 @@ class TimedGuzzleClient implements ClientInterface
     {
         return PinbaTimer::start([
             'group' => 'guzzle',
-            'operation' => $operation,
-            'url' => $url,
+            'op' => $operation,
+            'meta' => $url,
         ]);
     }
 

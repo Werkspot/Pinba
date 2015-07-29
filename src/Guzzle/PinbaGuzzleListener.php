@@ -44,8 +44,8 @@ class PinbaGuzzleListener implements SubscriberInterface
     {
         $this->timer = PinbaTimer::start([
             'group' => 'guzzle',
-            'operation' => $event->getRequest()->getMethod(),
-            'uri' => $event->getRequest()->getUrl()
+            'op' => $event->getRequest()->getMethod(),
+            'meta' => $event->getRequest()->getUrl()
         ]);
     }
 
