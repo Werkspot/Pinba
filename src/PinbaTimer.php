@@ -41,7 +41,7 @@ class PinbaTimer
     /**
      * Start a new pinba timer
      *
-     * @param array $tags like ['group' => 'symfony', 'operation' => 'initialize']
+     * @param array $tags like ['group' => 'symfony', 'op' => 'initialize']
      * @return PinbaTimer
      */
     public static function start(array $tags, array $data = [])
