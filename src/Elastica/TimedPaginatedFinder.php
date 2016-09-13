@@ -72,6 +72,20 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function createHybridPaginatorAdapter($query)
+    {
+        $timer = $this->startTimer('createHybridPaginatorAdapter');
+
+        $result = $this->finder->createHybridPaginatorAdapter($query);
+
+        $timer->stop();
+
+        return $result;
+    }
+
+    /**
      * @param string $op The operation to time
      * @return PinbaTimer
      */
