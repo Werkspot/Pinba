@@ -2,11 +2,7 @@
 namespace Werkspot\Pinba\Guzzle;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Event\EmitterInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Url;
+use Psr\Http\Message\RequestInterface;
 use Werkspot\Pinba\PinbaTimer;
 
 class TimedGuzzleClient implements ClientInterface
@@ -26,7 +22,7 @@ class TimedGuzzleClient implements ClientInterface
      */
     public function createRequest($method, $url = null, array $options = [])
     {
-        return $this->guzzleClient->createRequest($method, $url, $options);
+        return $this->guzzleClient->request($method, $url, $options);
     }
 
     /**
@@ -88,15 +84,42 @@ class TimedGuzzleClient implements ClientInterface
     /**
      * {@inheritDoc}
      */
-    public function send(RequestInterface $request)
+    public function send(RequestInterface $request, array $options = [])
     {
         $timer = $this->start('send', '');
 
-        $result = $this->guzzleClient->send($request);
+        $result = $this->guzzleClient->send($request, $options);
 
         $this->stop($timer);
 
         return $result;
+    }
+
+    public function sendAsync(RequestInterface $request, array $options = [])
+    {
+        $timer = $this->start('send', '');
+
+        $result = $this->guzzleClient->sendAsync($request, $options);
+
+        $this->stop($timer);
+
+        return $result;
+    }
+
+    public function request($method, $uri, array $options = [])
+    {
+        return $this->guzzleClient->request($method, $uri, $options);
+    }
+
+
+    public function requestAsync($method, $uri, array $options = [])
+    {
+        return $this->guzzleClient->requestAsync($method, $uri, $options);
+    }
+
+    public function getConfig($option = null)
+    {
+        return $this->guzzleClient->getConfig($option);
     }
 
     /**
@@ -104,15 +127,7 @@ class TimedGuzzleClient implements ClientInterface
      */
     public function getDefaultOption($keyOrPath = null)
     {
-        return $this->guzzleClient->getDefaultOption($keyOrPath);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDefaultOption($keyOrPath, $value)
-    {
-        return $this->guzzleClient->setDefaultOption($keyOrPath, $value);
+        return $this->guzzleClient->getConfig($keyOrPath);
     }
 
     /**
@@ -120,15 +135,7 @@ class TimedGuzzleClient implements ClientInterface
      */
     public function getBaseUrl()
     {
-        return $this->guzzleClient->getBaseUrl();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getEmitter()
-    {
-        return $this->guzzleClient->getEmitter();
+        return $this->guzzleClient->getConfig('base_uri');
     }
 
     /**
