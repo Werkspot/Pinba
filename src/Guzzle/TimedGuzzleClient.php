@@ -97,7 +97,7 @@ class TimedGuzzleClient implements ClientInterface
 
     public function sendAsync(RequestInterface $request, array $options = [])
     {
-        $timer = $this->start('send', '');
+        $timer = $this->start('sendAsync', '');
 
         $result = $this->guzzleClient->sendAsync($request, $options);
 
