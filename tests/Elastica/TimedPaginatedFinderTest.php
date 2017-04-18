@@ -68,11 +68,37 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
         // otherwise markTestAsSkipped would not test that
         $this->testCreatePaginatorAdapter();
 
-        $this->assertCorrectTagsSet([
-            'group' => 'elasticsearch',
-            'op' => 'createPaginatorAdapter',
-            'meta' => 'some_meta'
-        ]);
+        $this->assertCorrectTagsSet(
+            [
+                'group' => 'elasticsearch',
+                'op' => 'createPaginatorAdapter',
+                'meta' => 'some_meta'
+            ]
+        );
+    }
+
+    public function testCreateRawPaginatorAdapter()
+    {
+        $parentMock = Mockery::mock(PaginatedFinderInterface::class);
+        $parentMock->shouldReceive('createRawPaginatorAdapter')->with('foo', ['some_opt'])->andReturn('the result');
+
+        $finder = new TimedPaginatedFinder($parentMock, 'some_meta');
+        $this->assertSame('the result', $finder->createRawPaginatorAdapter('foo', ['some_opt']));
+    }
+
+    public function testCreateRawPaginatorAdapter_Tags()
+    {
+        // Separate test from so we can still test the implementation of find() even if we don't have pinba,
+        // otherwise markTestAsSkipped would not test that
+        $this->testCreatePaginatorAdapter();
+
+        $this->assertCorrectTagsSet(
+            [
+                'group' => 'elasticsearch',
+                'op' => 'createRawPaginatorAdapter',
+                'meta' => 'some_meta'
+            ]
+        );
     }
 
     private function assertCorrectTagsSet($tags)
