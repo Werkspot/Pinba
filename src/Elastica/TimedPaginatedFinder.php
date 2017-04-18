@@ -2,6 +2,7 @@
 namespace Werkspot\Pinba\Elastica;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
+use FOS\ElasticaBundle\Paginator\PaginatorAdapterInterface;
 use Werkspot\Pinba\PinbaTimer;
 
 /**
@@ -79,6 +80,25 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
         $timer = $this->startTimer('createHybridPaginatorAdapter');
 
         $result = $this->finder->createHybridPaginatorAdapter($query);
+
+        $timer->stop();
+
+        return $result;
+    }
+
+    /**
+     * Creates a raw paginator adapter for this query.
+     *
+     * @param mixed $query
+     * @param array $options
+     *
+     * @return PaginatorAdapterInterface
+     */
+    public function createRawPaginatorAdapter($query, $options = [])
+    {
+        $timer = $this->startTimer('createRawPaginatorAdapter');
+
+        $result = $this->finder->createRawPaginatorAdapter($query, $options);
 
         $timer->stop();
 
