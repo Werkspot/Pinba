@@ -1,14 +1,16 @@
 <?php
+declare(strict_types=1);
+
 namespace Werkspot\Pinba\Elastica;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * We can't test the
  */
-class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
+class TimedPaginatedFinderTest extends TestCase
 {
     public function testFind()
     {
