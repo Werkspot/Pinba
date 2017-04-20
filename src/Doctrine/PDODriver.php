@@ -1,6 +1,6 @@
 <?php
 
-namespace Werkspot\Pinba\PDO;
+namespace Werkspot\Pinba\Doctrine;
 
 /*
  * Wrapper on top of Doctrine\DBAL\Driver\PDOMySql\Driver to use PinbaPDOConnection

@@ -1,6 +1,6 @@
 <?php
 
-namespace Werkspot\Pinba\PDO;
+namespace Werkspot\Pinba\Doctrine;
 
 /*
  * This is native Doctrine\DBAL\Driver\PDOConnection, the only difference is that
@@ -9,8 +9,9 @@ namespace Werkspot\Pinba\PDO;
 use Doctrine\DBAL\Driver\Connection;
 use Doctrine\DBAL\Driver\ServerInfoAwareConnection;
 use PDOException;
+use Werkspot\Pinba\PDO\PDO as PinbaPDO;
 
-class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
+class PDOConnection extends PinbaPDO implements Connection, ServerInfoAwareConnection
 {
     /**
      * @param string      $dsn
@@ -54,7 +55,7 @@ class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
     /**
      * {@inheritdoc}
      */
-    public function prepare($prepareString, $driverOptions = [])
+    public function prepare($prepareString, array $driverOptions = [])
     {
         try {
             return parent::prepare($prepareString, $driverOptions);

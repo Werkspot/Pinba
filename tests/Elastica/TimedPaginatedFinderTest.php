@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\Pinba\Elastica;
+namespace Werkspot\Pinba\Test\Elastica;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Mockery;
