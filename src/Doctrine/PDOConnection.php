@@ -1,4 +1,5 @@
 <?php
+
 namespace Werkspot\Pinba\PDO;
 
 /*
@@ -17,13 +18,13 @@ class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
      * @param string|null $password
      * @param array|null  $options
      *
-     * @throws PDOException in case of an error.
+     * @throws PDOException in case of an error
      */
     public function __construct($dsn, $user = null, $password = null, array $options = null)
     {
         try {
             parent::__construct($dsn, $user, $password, $options);
-            $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('Doctrine\DBAL\Driver\PDOStatement', array()));
+            $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, ['Doctrine\DBAL\Driver\PDOStatement', []]);
             $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
@@ -53,7 +54,7 @@ class PDOConnection extends PDO implements Connection, ServerInfoAwareConnection
     /**
      * {@inheritdoc}
      */
-    public function prepare($prepareString, $driverOptions = array())
+    public function prepare($prepareString, $driverOptions = [])
     {
         try {
             return parent::prepare($prepareString, $driverOptions);

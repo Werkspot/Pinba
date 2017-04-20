@@ -1,4 +1,5 @@
 <?php
+
 namespace Werkspot\Pinba\Elastica;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
@@ -31,7 +32,7 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function find($query, $limit = null, $options = [])
     {
@@ -45,7 +46,7 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function findPaginated($query, $options = [])
     {
@@ -59,7 +60,7 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createPaginatorAdapter($query, $options = [])
     {
@@ -73,7 +74,7 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createHybridPaginatorAdapter($query)
     {
@@ -107,13 +108,14 @@ class TimedPaginatedFinder implements PaginatedFinderInterface
 
     /**
      * @param string $op The operation to time
+     *
      * @return PinbaTimer
      */
     private function startTimer($op)
     {
-        $tags= [
+        $tags = [
             'group' => 'elasticsearch',
-            'op' => $op
+            'op' => $op,
         ];
 
         if ($this->meta) {
