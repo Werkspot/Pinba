@@ -7,10 +7,8 @@ namespace Werkspot\Pinba\Test\Elastica;
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Werkspot\Pinba\Elastica\TimedPaginatedFinder;
 
-/**
- * We can't test the
- */
 class TimedPaginatedFinderTest extends TestCase
 {
     public function testFind()
