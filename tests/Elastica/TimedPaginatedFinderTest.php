@@ -1,14 +1,15 @@
 <?php
-namespace Werkspot\Pinba\Elastica;
+
+declare(strict_types=1);
+
+namespace Werkspot\Pinba\Test\Elastica;
 
 use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use Werkspot\Pinba\Elastica\TimedPaginatedFinder;
 
-/**
- * We can't test the
- */
-class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
+class TimedPaginatedFinderTest extends TestCase
 {
     public function testFind()
     {
@@ -17,7 +18,6 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
 
         $finder = new TimedPaginatedFinder($parentMock, 'some_meta');
         $this->assertSame('the result', $finder->find('foo', 10, ['some_opt']));
-
     }
 
     public function testFind_Tags()
@@ -28,7 +28,7 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
         $this->assertCorrectTagsSet([
             'group' => 'elasticsearch',
             'op' => 'find',
-            'meta' => 'some_meta'
+            'meta' => 'some_meta',
         ]);
     }
 
@@ -49,7 +49,7 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
         $this->assertCorrectTagsSet([
             'group' => 'elasticsearch',
             'op' => 'findPaginatedd', // THIS SHOULD STILL FAIL
-            'meta' => 'some_meta'
+            'meta' => 'some_meta',
         ]);
     }
 
@@ -72,7 +72,7 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
             [
                 'group' => 'elasticsearch',
                 'op' => 'createPaginatorAdapter',
-                'meta' => 'some_meta'
+                'meta' => 'some_meta',
             ]
         );
     }
@@ -96,7 +96,7 @@ class TimedPaginatedFinderTest extends PHPUnit_Framework_TestCase
             [
                 'group' => 'elasticsearch',
                 'op' => 'createRawPaginatorAdapter',
-                'meta' => 'some_meta'
+                'meta' => 'some_meta',
             ]
         );
     }

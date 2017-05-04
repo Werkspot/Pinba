@@ -1,4 +1,5 @@
 <?php
+
 namespace Werkspot\Pinba;
 
 class PinbaTimer
@@ -28,6 +29,7 @@ class PinbaTimer
 
     /**
      * Add a tag to the existing timer
+     *
      * @param string $name
      * @param string $value
      */
@@ -42,6 +44,7 @@ class PinbaTimer
      * Start a new pinba timer
      *
      * @param array $tags like ['group' => 'symfony', 'op' => 'initialize']
+     *
      * @return PinbaTimer
      */
     public static function start(array $tags, array $data = [])

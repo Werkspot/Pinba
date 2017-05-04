@@ -1,4 +1,5 @@
 <?php
+
 namespace Werkspot\Pinba\Guzzle;
 
 use GuzzleHttp\ClientInterface;
@@ -18,7 +19,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function createRequest($method, $url = null, array $options = [])
     {
@@ -26,7 +27,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function get($url = null, $options = [])
     {
@@ -34,7 +35,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function head($url = null, array $options = [])
     {
@@ -42,7 +43,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function delete($url = null, array $options = [])
     {
@@ -50,7 +51,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function put($url = null, array $options = [])
     {
@@ -58,7 +59,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function patch($url = null, array $options = [])
     {
@@ -66,7 +67,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function post($url = null, array $options = [])
     {
@@ -74,7 +75,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function options($url = null, array $options = [])
     {
@@ -82,7 +83,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function send(RequestInterface $request, array $options = [])
     {
@@ -111,7 +112,6 @@ class TimedGuzzleClient implements ClientInterface
         return $this->guzzleClient->request($method, $uri, $options);
     }
 
-
     public function requestAsync($method, $uri, array $options = [])
     {
         return $this->guzzleClient->requestAsync($method, $uri, $options);
@@ -123,7 +123,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDefaultOption($keyOrPath = null)
     {
@@ -131,7 +131,7 @@ class TimedGuzzleClient implements ClientInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getBaseUrl()
     {
@@ -142,6 +142,7 @@ class TimedGuzzleClient implements ClientInterface
      * @param string $method
      * @param null $url
      * @param array $options
+     *
      * @return mixed
      */
     private function measure($method, $url = null, $options = [])
@@ -158,6 +159,7 @@ class TimedGuzzleClient implements ClientInterface
     /**
      * @param string $operation
      * @param string $url
+     *
      * @return PinbaTimer
      */
     private function start($operation, $url)

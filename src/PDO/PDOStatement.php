@@ -1,4 +1,5 @@
 <?php
+
 namespace Werkspot\Pinba\PDO;
 
 use Werkspot\Pinba\PinbaTimer;
@@ -14,22 +15,23 @@ class PDOStatement
 
     public function execute(array $input_parameters = null)
     {
-        $tags = array(
+        $tags = [
             'group' => 'mysql',
             'op' => PDO::getQueryType($this->PDOStatement->queryString),
-        );
-        $data = array('sql' => $this->PDOStatement->queryString);
+        ];
+        $data = ['sql' => $this->PDOStatement->queryString];
         $timer = PinbaTimer::start($tags, $data);
 
         $result = $this->PDOStatement->execute($input_parameters);
 
         $timer->stop();
+
         return $result;
     }
 
     public function __call($method, $args)
     {
-        return call_user_func_array(array($this->PDOStatement, $method), $args);
+        return call_user_func_array([$this->PDOStatement, $method], $args);
     }
 
     public function __get($name)

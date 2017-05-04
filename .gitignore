@@ -1,2 +1,17 @@
-vendor
+# Project #
+############
+bin
+.php_cs.cache
+
+# Tests #
+############
+coverage.clover.xml
+
+# Composer #
+############
 composer.lock
+vendor
+
+# PHPStorm #
+############
+.idea

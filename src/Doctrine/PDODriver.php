@@ -1,5 +1,6 @@
 <?php
-namespace Werkspot\Pinba\PDO;
+
+namespace Werkspot\Pinba\Doctrine;
 
 /*
  * Wrapper on top of Doctrine\DBAL\Driver\PDOMySql\Driver to use PinbaPDOConnection
@@ -13,7 +14,7 @@ class PDODriver extends Driver
     /**
      * {@inheritdoc}
      */
-    public function connect(array $params, $username = null, $password = null, array $driverOptions = array())
+    public function connect(array $params, $username = null, $password = null, array $driverOptions = [])
     {
         try {
             $conn = new PDOConnection(
@@ -25,8 +26,10 @@ class PDODriver extends Driver
         } catch (PDOException $e) {
             throw DBALException::driverException($this, $e);
         }
+
         return $conn;
     }
+
     /**
      * {@inheritdoc}
      */
