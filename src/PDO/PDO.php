@@ -68,7 +68,7 @@ class PDO extends \PDO
         return new PDOStatement($result);
     }
 
-    public function prepare($statement, array $driver_options = [])
+    public function prepare($statement, $driver_options = NULL)
     {
         $result = parent::prepare($statement, $driver_options);
 
