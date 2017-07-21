@@ -3,6 +3,7 @@
 namespace Werkspot\Pinba\PDO;
 
 use Werkspot\Pinba\PinbaTimer;
+use Werkspot\Pinba\PDO\PDO as PinbaPDO;
 
 class PDOStatement
 {
@@ -17,7 +18,7 @@ class PDOStatement
     {
         $tags = [
             'group' => 'mysql',
-            'op' => PDO::getQueryType($this->PDOStatement->queryString),
+            'op' => PinbaPDO::getQueryType($this->PDOStatement->queryString),
         ];
         $data = ['sql' => $this->PDOStatement->queryString];
         $timer = PinbaTimer::start($tags, $data);

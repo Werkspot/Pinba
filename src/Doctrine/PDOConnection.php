@@ -26,7 +26,7 @@ class PDOConnection extends PinbaPDO implements Connection, ServerInfoAwareConne
         try {
             parent::__construct($dsn, $user, $password, $options);
             $this->setAttribute(PinbaPDO::ATTR_STATEMENT_CLASS, ['Doctrine\DBAL\Driver\PDOStatement', []]);
-            $this->setAttribute(PinbaPDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->setAttribute(PinbaPDO::ATTR_ERRMODE, PinbaPDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }
