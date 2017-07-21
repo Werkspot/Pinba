@@ -25,8 +25,8 @@ class PDOConnection extends PinbaPDO implements Connection, ServerInfoAwareConne
     {
         try {
             parent::__construct($dsn, $user, $password, $options);
-            $this->setAttribute(PDO::ATTR_STATEMENT_CLASS, ['Doctrine\DBAL\Driver\PDOStatement', []]);
-            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->setAttribute(PinbaPDO::ATTR_STATEMENT_CLASS, ['Doctrine\DBAL\Driver\PDOStatement', []]);
+            $this->setAttribute(PinbaPDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $exception) {
             throw new PDOException($exception);
         }
@@ -49,7 +49,7 @@ class PDOConnection extends PinbaPDO implements Connection, ServerInfoAwareConne
      */
     public function getServerVersion()
     {
-        return PDO::getAttribute(PDO::ATTR_SERVER_VERSION);
+        return PinbaPDO::getAttribute(PinbaPDO::ATTR_SERVER_VERSION);
     }
 
     /**
@@ -94,7 +94,7 @@ class PDOConnection extends PinbaPDO implements Connection, ServerInfoAwareConne
     /**
      * {@inheritdoc}
      */
-    public function quote($input, $type = \PDO::PARAM_STR)
+    public function quote($input, $type = PinbaPDO::PARAM_STR)
     {
         return parent::quote($input, $type);
     }
