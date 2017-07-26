@@ -10,7 +10,7 @@ class PDOConnection extends DBALConnection
 {
     public function __construct(...$arguments)
     {
-        $tags = ['group' => 'mysql', 'op' => 'connect'];
+        $tags = ['group' => 'database', 'op' => 'connect'];
         $timer = PinbaTimer::start($tags);
         $result = call_user_func_array(['parent', '__construct'], $arguments);
         $timer->stop();
@@ -20,7 +20,7 @@ class PDOConnection extends DBALConnection
 
     public function beginTransaction()
     {
-        $tags = ['group' => 'mysql', 'op' => 'begin'];
+        $tags = ['group' => 'database', 'op' => 'begin'];
         $timer = PinbaTimer::start($tags);
         $result = parent::beginTransaction();
         $timer->stop();
@@ -30,7 +30,7 @@ class PDOConnection extends DBALConnection
 
     public function commit()
     {
-        $tags = ['group' => 'mysql', 'op' => 'commit'];
+        $tags = ['group' => 'database', 'op' => 'commit'];
         $timer = PinbaTimer::start($tags);
         $result = parent::commit();
         $timer->stop();
@@ -40,7 +40,7 @@ class PDOConnection extends DBALConnection
 
     public function rollBack()
     {
-        $tags = ['group' => 'mysql', 'op' => 'rollback'];
+        $tags = ['group' => 'database', 'op' => 'rollback'];
         $timer = PinbaTimer::start($tags);
         $result = parent::rollBack();
         $timer->stop();
@@ -50,7 +50,7 @@ class PDOConnection extends DBALConnection
 
     public function exec($statement)
     {
-        $tags = ['group' => 'mysql', 'op' => PinbaPDO::getQueryType($statement)];
+        $tags = ['group' => 'database', 'op' => PinbaPDO::getQueryType($statement)];
         $data = ['sql' => $statement];
         $timer = PinbaTimer::start($tags, $data);
         $result = parent::exec($statement);
