@@ -6,14 +6,11 @@ use Werkspot\Pinba\PinbaTimer;
 
 class PDO extends \PDO
 {
-    public function __construct()
+    public function __construct(...$arguments)
     {
         $tags = ['group' => 'mysql', 'op' => 'connect'];
         $timer = PinbaTimer::start($tags);
-
-        $args = func_get_args();
-        $result = call_user_func_array(['parent', '__construct'], $args);
-
+        $result = call_user_func_array(['parent', '__construct'], $arguments);
         $timer->stop();
 
         return $result;
@@ -58,21 +55,6 @@ class PDO extends \PDO
         $timer->stop();
 
         return $result;
-    }
-
-    public function query()
-    {
-        $args = func_get_args();
-        $result = call_user_func_array(['parent', 'query'], $args);
-
-        return new PDOStatement($result);
-    }
-
-    public function prepare($statement, $driver_options = NULL)
-    {
-        $result = parent::prepare($statement, $driver_options);
-
-        return new PDOStatement($result);
     }
 
     public static function getQueryType($queryText)
