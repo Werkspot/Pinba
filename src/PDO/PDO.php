@@ -8,7 +8,7 @@ class PDO extends \PDO
 {
     public function __construct(...$arguments)
     {
-        $tags = ['group' => 'mysql', 'op' => 'connect'];
+        $tags = ['group' => 'database', 'op' => 'connect'];
         $timer = PinbaTimer::start($tags);
         $result = call_user_func_array(['parent', '__construct'], $arguments);
         $timer->stop();
@@ -18,7 +18,7 @@ class PDO extends \PDO
 
     public function beginTransaction()
     {
-        $tags = ['group' => 'mysql', 'op' => 'begin'];
+        $tags = ['group' => 'database', 'op' => 'begin'];
         $timer = PinbaTimer::start($tags);
         $result = parent::beginTransaction();
         $timer->stop();
@@ -28,7 +28,7 @@ class PDO extends \PDO
 
     public function commit()
     {
-        $tags = ['group' => 'mysql', 'op' => 'commit'];
+        $tags = ['group' => 'database', 'op' => 'commit'];
         $timer = PinbaTimer::start($tags);
         $result = parent::commit();
         $timer->stop();
@@ -38,7 +38,7 @@ class PDO extends \PDO
 
     public function rollBack()
     {
-        $tags = ['group' => 'mysql', 'op' => 'rollback'];
+        $tags = ['group' => 'database', 'op' => 'rollback'];
         $timer = PinbaTimer::start($tags);
         $result = parent::rollBack();
         $timer->stop();
@@ -48,7 +48,7 @@ class PDO extends \PDO
 
     public function exec($statement)
     {
-        $tags = ['group' => 'mysql', 'op' => self::getQueryType($statement)];
+        $tags = ['group' => 'database', 'op' => self::getQueryType($statement)];
         $data = ['sql' => $statement];
         $timer = PinbaTimer::start($tags, $data);
         $result = parent::exec($statement);
