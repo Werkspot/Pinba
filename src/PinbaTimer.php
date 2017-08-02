@@ -2,9 +2,19 @@
 
 namespace Werkspot\Pinba;
 
-class PinbaTimer
+use Werkspot\Pinba\Timer\TimerFactory;
+use Werkspot\Pinba\Timer\TimerInterface;
+
+final class PinbaTimer
 {
+    /**
+     * @var TimerInterface
+     */
     private $timer;
+
+    /**
+     * @var boolean
+     */
     private static $isPinbaInstalled;
 
     /**
@@ -13,7 +23,7 @@ class PinbaTimer
     private function __construct(array $tags, array $data = [])
     {
         if (self::isPinbaInstalled()) {
-            $this->timer = pinba_timer_start($tags, $data);
+            $this->timer = (new TimerFactory)->start($tags, $data);
         }
     }
 
@@ -23,7 +33,7 @@ class PinbaTimer
     public function stop()
     {
         if ($this->timer) {
-            pinba_timer_stop($this->timer);
+            $this->timer->stop();
         }
     }
 
@@ -36,7 +46,7 @@ class PinbaTimer
     public function addTag($name, $value)
     {
         if ($this->timer) {
-            pinba_timer_tags_merge($this->timer, [$name, $value]);
+            $this->timer->addTag($name, $value);
         }
     }
 
@@ -52,10 +62,7 @@ class PinbaTimer
         return new self($tags, $data);
     }
 
-    /**
-     * @return bool
-     */
-    private static function isPinbaInstalled()
+    public static function isPinbaInstalled(): bool
     {
         if (null === self::$isPinbaInstalled) {
             self::$isPinbaInstalled =
