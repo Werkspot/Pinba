@@ -17,7 +17,7 @@ class PDOStatement
     public function execute(array $input_parameters = null)
     {
         $tags = [
-            'group' => 'mysql',
+            'group' => 'database',
             'op' => PinbaPDO::getQueryType($this->PDOStatement->queryString),
         ];
         $data = ['sql' => $this->PDOStatement->queryString];

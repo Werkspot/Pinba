@@ -57,6 +57,13 @@ class PDO extends \PDO
         return $result;
     }
 
+    public function prepare($statement, array $driver_options = array())
+    {
+        $statement = parent::prepare($statement, $driver_options);
+
+        return new PDOStatement($statement);
+    }
+
     public static function getQueryType($queryText)
     {
         $tmp = strtolower(substr(ltrim($queryText), 0, 8));
