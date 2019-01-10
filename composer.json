@@ -22,15 +22,16 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "friendsofsymfony/elastica-bundle": "dev-master",
         "php": ">=7.1"
     },
     "suggest": {
         "doctrine/dbal": "^2.5",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "friendsofsymfony/elastica-bundle": "dev-master"
     },
     "require-dev": {
         "doctrine/dbal": "^2.5",
+        "friendsofsymfony/elastica-bundle": "dev-master",
         "friendsofphp/php-cs-fixer": "^2.0",
         "guzzlehttp/guzzle": "~6.0",
         "mockery/mockery": "~0.9",
